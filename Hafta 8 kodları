@@ -1,0 +1,32 @@
+SELECT        customer_id, first_name, last_name, phone, email, street, city, state, zip_code
+FROM            musteriler
+WHERE        (first_name LIKE 'aleta%')
+
+
+SELECT        stok.store_id, stok.product_id, stok.quantity
+FROM            stok INNER JOIN
+                         urunler ON stok.product_id = urunler.product_id
+WHERE        (stok.product_id BETWEEN 20 AND 25)
+
+
+SELECT        store_id, product_id, quantity
+FROM            stok
+WHERE        (quantity >
+                             (SELECT        AVG(quantity) AS Expr1
+                               FROM            stok AS stok_1))
+
+
+SELECT        TOP (200) product_id, product_name, brand_id, category_id, model_year, list_price
+FROM            urunler
+WHERE        (model_year BETWEEN 2016 AND 2018) AND (list_price < 1000)
+
+
+SELECT        *
+FROM            urunler
+WHERE        (model_year BETWEEN 2016 AND 2018) AND (list_price <
+                             (SELECT        AVG(list_price) AS Expr1
+                               FROM            urunler AS urunler_1))
+
+
+
+
